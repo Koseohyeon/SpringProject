@@ -7,7 +7,7 @@ public class BuilderTest {
         MemberDto memberDto=new MemberDto("abc@test.com","1111","홍길동",10,"010-123");
         System.out.println(memberDto);
         MemberDto memberDto1=MemberDto.builder()
-                .mobile("010-222")
+                .phone("010-222")
                 .age(30)
                 .name("김길동")
                 .build();

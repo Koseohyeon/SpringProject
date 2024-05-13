@@ -13,6 +13,7 @@ public class MemberRepository {
     public int save(MemberDto memberDto) {
         System.out.println("========"+memberDto);
         int result= sqlSession.insert("Member.save",memberDto);
+        System.out.println("result : "+result);
         return result;
     }
 }

@@ -58,9 +58,9 @@ public class MemberController {
 
     @GetMapping("/list")
     public String memberList(Model model){
-        List<MemberDto> memberLsit=memberService.findAll();
-        System.out.println("=======>"+ memberLsit);
-        model.addAttribute("memberLIst",memberLsit);
+        List<MemberDto> memberList=memberService.findAll();
+        System.out.println("=======>"+ memberList);
+        model.addAttribute("memberList",memberList);
         return "member/list";
     }
 

@@ -5,9 +5,12 @@ import inhatc.cse.spring.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.w3c.dom.ls.LSInput;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -53,6 +56,12 @@ public class MemberController {
         }
     }
 
-
+    @GetMapping("/list")
+    public String memberList(Model model){
+        List<MemberDto> memberLsit=memberService.findAll();
+        System.out.println("=======>"+ memberLsit);
+        model.addAttribute("memberLIst",memberLsit);
+        return "member/list";
+    }
 
 }

@@ -11,6 +11,6 @@ public class BuilderTest {
                 .age(30)
                 .name("김길동")
                 .build();
-        System.out.println(memberDto1);*/
+        System.out.println(memberDto1);*///
     }
 }

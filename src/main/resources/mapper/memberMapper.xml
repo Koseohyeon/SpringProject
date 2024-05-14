@@ -6,4 +6,10 @@
         INSERT INTO member_table (email,password,name,age,phone)
         VALUES(#{email},#{password},#{name},#{age},#{phone})
     </insert>
+
+    <select id="login" parameterType="member" resultType="member">
+        SELECT *
+        FROM member_table
+        WHERE email=#{email} AND password=#{password}
+    </select>
 </mapper>

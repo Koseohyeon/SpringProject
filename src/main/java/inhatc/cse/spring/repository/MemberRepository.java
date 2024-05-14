@@ -16,4 +16,8 @@ public class MemberRepository {
         System.out.println("result : "+result);
         return result;
     }
+
+    public MemberDto login(MemberDto memberDto) {
+        return sqlSession.selectOne("Member.login",memberDto);
+    }
 }

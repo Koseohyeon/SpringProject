@@ -29,7 +29,7 @@ public class MemberController {
     }
 
     @PostMapping("/save")
-    public String memberInsert(@ModelAttribute MemberDto memberDto){
+    public String memberInsert(@RequestBody MemberDto memberDto){
         System.out.println("========="+ memberDto);
         int result = memberService.save(memberDto);
         if(result > 0){

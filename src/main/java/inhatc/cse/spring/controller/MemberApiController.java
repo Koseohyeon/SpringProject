@@ -40,5 +40,13 @@ public class MemberApiController {
         System.out.println("memberList :"+ memberList);
         return new ResponseEntity<>(memberList,HttpStatus.OK);
     }
+
+    @GetMapping("/member/{id}")
+    public ResponseEntity<?> getMemberById(@PathVariable int id) {
+        MemberDto member = memberService.findById(id);
+        return new ResponseEntity<>(member, HttpStatus.OK);
+    }
+
+
 }
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Book">
+    <insert id="save" parameterType="inhatc.cse.spring.controller.dto.BookDTO">
+        INSERT INTO book_table (title, writher, publisher, year, bookImage)
+        VALUES (#{title}, #{writher}, #{publisher}, #{year}, #{bookImage})
+    </insert>
+
+    <select id="findAll" resultType="inhatc.cse.spring.controller.dto.BookDTO">
+        SELECT * FROM book_table;
+    </select>
+
+    <select id="findById" parameterType="int" resultType="inhatc.cse.spring.controller.dto.BookDTO">
+        SELECT *
+        FROM book_table
+        WHERE id=#{id}
+    </select>
+</mapper>

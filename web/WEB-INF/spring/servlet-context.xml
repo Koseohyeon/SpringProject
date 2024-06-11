@@ -7,12 +7,52 @@
 
     <mvc:annotation-driven/>
 
+   <!-- &lt;!&ndash; 정적 자원 매핑 &ndash;&gt;
+    <mvc:resources mapping="/images/**" location="classpath:/static/images/" />-->
+    <!-- 정적 자원 매핑 -->
+    <mvc:resources mapping="/images/**" location="classpath:/static/images/">
+        <mvc:cache-control max-age="3600" />
+        <mvc:resource-chain resource-cache="true">
+            <mvc:resolvers>
+                <bean class="org.springframework.web.servlet.resource.VersionResourceResolver">
+                    <property name="strategyMap">
+                        <map>
+                            <entry key="/**">
+                                <bean class="org.springframework.web.servlet.resource.ContentVersionStrategy"/>
+                            </entry>
+                        </map>
+                    </property>
+                </bean>
+            </mvc:resolvers>
+        </mvc:resource-chain>
+    </mvc:resources>
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
         <property name="order" value="1"/>
     </bean>
 
+    <bean id="fileUploadService" class="inhatc.cse.spring.service.FileUploadService">
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="maxUploadSize" value="10485760"/> <!-- 10MB -->
+    </bean>
+
     <!-- -->
     <context:component-scan base-package="inhatc.cse.spring" />
+    <!-- Java Config 클래스 활성화 -->
+    <bean class="inhatc.cse.spring.config.CorsConfig"/>
+    <bean class="inhatc.cse.spring.config.WebConfig"/>
+   <!-- &lt;!&ndash;파일업로드 &ndash;&gt;
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf=8"/>
+        <property name="maxUploadSize" value="104857560"/>
+        <property name="maxUploadSizePerFile" value="2097152"/>
+        <property name="uploadTempDir" value="file:/C:/upload/temp"/>
+        <property name="maxInMemorySize" value="10485756"/>
+
+    </bean>-->
 </beans>
